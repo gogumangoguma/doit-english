@@ -21,6 +21,11 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/internet/HowInternetWork.vue"
       ),
   },
+  {
+    path: "/test",
+    name: "TestPage",
+    component: () => import("../views/About.vue"),
+  },
 ];
 
 const router = new VueRouter({
