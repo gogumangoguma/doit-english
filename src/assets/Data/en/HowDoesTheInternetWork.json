@@ -1,0 +1,136 @@
+{
+    "title": "How Does the Internet work?",
+    "contents": [
+        {
+            "subTitle": "1. Introduction",
+            "content": [
+                "How does the Internet work? Good question!",
+                "The Internet's growth has become explosive and it seems impossible to escape the bombardment of www.com's seen constantly on television, heard on radio, and seen in magazines.",
+                "Because the Internet has become such a large part of our lives, a good understanding is needed to use this new tool most effectively.", 
+                "This whitepaper explains the underlying infrastructure and technologies that make the Internet work.",
+                "It does not go into great depth, but covers enough of each area to give a basic understanding of the concepts involved.",
+                "For any unanswered questions, a list of resources is provided at the end of the paper.",
+                "Any comments, suggestions, questions, etc. are encouraged and may be directed to the author at rshuler@gobcg.com.",
+                "[테이블자리]"
+            ]
+        },
+        {
+            "subTitle": "2. Where to Begin? Internet Addresses",
+            "content": [
+                "Because the Internet is a global network of computers each computer connected to the Internet must have a unique address.",
+                "Internet addresses are in the form nnn.nnn.nnn.nnn where nnn must be a number from 0 - 255.",
+                "This address is known as an IP address. (IP stands for Internet Protocol; more on this later.)",
+                "The picture below illustrates two computers connected to the Internet; your computer with IP address 1.2.3.4 and another computer with IP address 5.6.7.8.",
+                "The Internet is represented as an abstract object in-between.",
+                "(As this paper progresses, the Internet portion of Diagram 1 will be explained and redrawn several times as the details of the Internet are exposed.)",
+                "If you connect to the Internet through an Internet Service Provider (ISP), you are usually assigned a temporary IP address for the duration of your dial-in session.",
+                "If you connect to the Internet from a local area network (LAN) your computer might have a permanent IP address or it might obtain a temporary one from a DHCP (Dynamic Host Configuration Protocol) server.",
+                "In any case, if you are connected to the Internet, your computer has a unique IP address."
+            ],
+            "table": {
+                "header": ["Check It Out - The Ping Program"],
+                "content": [
+                    "If you're using Microsoft Windows or a flavor of Unix and have a connection to the Internet, there is a handy program to see if a computer on the Internet is alive.",
+                    "It's called ping, probably after the sound made by older submarine sonar systems.",
+                    "1 If you are using Windows, start a command prompt window. If you're using a flavor of Unix, get to a command prompt.",
+                    "Type ping www.yahoo.com. The ping program will send a 'ping'. (actually an ICMP (Internet Control Message Protocol) echo request message) to the named computer.",
+                    "The pinged computer will respond with a reply. The ping program will count the time expired until the reply comes back (if it does).",
+                    "Also, if you enter a domain name (i.e. www.yahoo.com) instead of an IP address, ping will resolve the domain name and display the computer's IP address.",
+                    "More on domain names and address resolution later."
+                ]
+            },
+            "isHaveImage": true
+        },
+        {
+            "subTitle": "3. Protocol Stacks and Packets",
+            "content": [
+                "So your computer is connected to the Internet and has a unique address.",
+                "How does it 'talk' to other computers connected to the Internet?",
+                "An example should serve here: Let's say your IP address is 1.2.3.4 and you want to send a message to the computer 5.6.7.8.",
+                "The message you want to send is \"Hello computer 5.6.7.8!\".",
+                "Obviously, the message must be transmitted over whatever kind of wire connects your computer to the Internet.",
+                "Let's say you've dialed into your ISP from home and the message must be transmitted over the phone line.",
+                "Therefore the message must be translated from alphabetic text into electronic signals, transmitted over the Internet, then translated back into alphabetic text.",
+                "How is this accomplished? Through the use of a protocol stack.",
+                "Every computer needs one to communicate on the Internet and it is usually built into the computer's operating system (i.e. Windows, Unix, etc.).",
+                "The protocol stack used on the Internet is refered to as the TCP/IP protocol stack because of the two major communication protocols used.",
+                "The TCP/IP stack looks like this",
+                "[테이블자리]",
+                "If we were to follow the path that the message \"Hello computer 5.6.7.8!\" took from our computer to the computer with IP address 5.6.7.8, it would happen something like this:",
+                "1. The message would start at the top of the protocol stack on your computer and work it's way downward.",
+                "2. If the message to be sent is long, each stack layer that the message passes through may break the message up into smaller chunks of data.\\n This is because data sent over the Internet (and most computer networks) are sent in manageable chunks.\\n On the Internet, these chunks of data are known as packets.",
+                "3. The packets would go through the Application Layer and continue to the TCP layer.\\n Each packet is assigned a port number.\\n Ports will be explained later, but suffice to say that many programs may be using the TCP/IP stack and sending messages.\\n We need to know which program on the destination computer needs to receive the message because it will be listening on a specific port.",
+                "4. After going through the TCP layer, the packets proceed to the IP layer.\\n This is where each packet receives it's destination address, 5.6.7.8.",
+                "5. Now that our message packets have a port number and an IP address, they are ready to be sent over the Internet.\\n The hardware layer takes care of turning our packets containing the alphabetic text of our message into electronic signals and transmitting them over the phone line.",
+                "6. On the other end of the phone line your ISP has a direct connection to the Internet.\\n The ISPs router examines the destination address in each packet and determines where to send it.\\n Often, the packet's next stop is another router.\\n More on routers and Internet infrastructure later.",
+                "7. Eventually, the packets reach computer 5.6.7.8. Here, the packets start at the bottom of the destination computer's TCP/IP stack and work upwards.",
+                "8. As the packets go upwards through the stack, all routing data that the sending computer's stack added (such as IP address and port number) is stripped from the packets.",
+                "9. When the data reaches the top of the stack, the packets have been re-assembled into their original form, \"Hello computer 5.6.7.8!\""
+            ],
+            "table": {
+                "header": ["Protocol Layer", "Comments"],
+                "content": [
+                    ["Application Protocols Layer,", "Protocols specific to applications such as WWW, e-mail, FTP, etc."], 
+                    ["Transmission Control Protocol Layer",	"TCP directs packets to a specific application on a computer using a port number."],
+                    ["Internet Protocol Layer",	"IP directs packets to a specific computer using an IP address."],
+                    ["Hardware Layer",	"Converts binary packet data to network signals and back. (E.g. ethernet network card, modem for phone lines, etc.)"]
+                ]
+            },
+            "isHaveImage": true
+        },
+        {
+            "subTitle": "",
+            "content": "",
+            "table": {
+                "header": "",
+                "content": []
+            },
+            "isHaveImage": true
+        },
+        {
+            "subTitle": "",
+            "content": "",
+            "table": {
+                "header": "",
+                "content": []
+            },
+            "isHaveImage": false
+        },
+        {
+            "subTitle": "",
+            "content": "",
+            "table": {
+                "header": "",
+                "content": []
+            },
+            "isHaveImage": false
+        },
+        {
+            "subTitle": "",
+            "content": "",
+            "table": {
+                "header": "",
+                "content": []
+            },
+            "isHaveImage": false
+        },
+        {
+            "subTitle": "",
+            "content": "",
+            "table": {
+                "header": "",
+                "content": []
+            },
+            "isHaveImage": false
+        },
+        {
+            "subTitle": "",
+            "content": "",
+            "table": {
+                "header": "",
+                "content": []
+            },
+            "isHaveImage": false
+        }
+    ]
+}
