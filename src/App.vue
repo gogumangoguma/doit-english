@@ -1,14 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/howInternetWork"
-        >How Does the Internet Work?</router-link
-      >
-    </div>
-    <router-view />
+    <core-layout></core-layout>
   </div>
 </template>
+
+<script>
+import CoreLayout from "./components/core/Layout.vue";
+
+export default {
+  name: "App",
+
+  components: {
+    CoreLayout,
+  },
+};
+</script>
 
 <style>
 #app {
